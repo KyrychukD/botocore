@@ -86,6 +86,13 @@ class ClientCreator(object):
         return self._create_client_class(service_name, service_model)
 
     def _create_client_class(self, service_name, service_model):
+        import importlib
+        api_version = service_model.api_version.replace('-', '_')
+        service_module = importlib.import_module(
+            f'botocore._clients.{service_name}.{api_version}',
+        )
+        return getattr(service_module, get_service_module_name(service_model))
+
         class_attributes = self._create_methods(service_model)
         py_name_to_operation_name = self._create_name_mapping(service_model)
         class_attributes['_PY_TO_OP_NAME'] = py_name_to_operation_name
