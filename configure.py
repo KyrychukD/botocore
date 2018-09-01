@@ -15,6 +15,7 @@
 # limitations under the License.
 """Script that generates the build.ninja for botocore."""
 
+import argparse
 import os
 import re
 
@@ -23,6 +24,9 @@ import ninja_syntax
 SOURCE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 BUILD_FILENAME = 'build.ninja'
+SERVICES_WHITELIST = [
+    'cloudwatch',
+]
 
 
 def service_version(name, api_version):
@@ -54,7 +58,7 @@ def get_service_versions(name, data_dir):
     return versions
 
 
-def generate_build(root, build_file):
+def generate_build(root, build_file, configure_args, services_to_generate):
     n = ninja_syntax.Writer(build_file)  # pylint: disable=invalid-name
 
     n.comment('This file is used to build ninja itself.')
@@ -78,6 +82,7 @@ def generate_build(root, build_file):
     n.newline()
 
     n.variable('configure', os.path.join('$root', 'configure.py'))
+    n.variable('configure_args', ' '.join(configure_args))
     n.newline()
 
     n.comment('Scripts')
@@ -104,12 +109,11 @@ def generate_build(root, build_file):
 
     n.comment('Services')
 
-    for service_name in ['cloudwatch']:
+    for service_name in services_to_generate:
         versions = get_service_versions(service_name, data_dir)
         assert versions, 'There must be more than 0 versions.'
         service_specs = []
         for version in versions:
-            # Service
             version_build = service_version(service_name, version)
             spec_file = service_specification(service_name, version)
             n.build(
@@ -130,11 +134,10 @@ def generate_build(root, build_file):
             # Force rebuild when modifying the script.
             implicit=['$build-service-default-init-module'],
         )
-        # all_targets.append(service_version(service_name, latest_init))
         n.newline()
 
     n.comment('Regenerate build files if build script changes.')
-    n.rule('configure', command='$configure')
+    n.rule('configure', command='$configure $configure_args', generator=True)
     n.build('build.ninja', rule='configure', implicit='$configure')
     n.newline()
 
@@ -143,6 +146,28 @@ def generate_build(root, build_file):
     n.close()
 
 
-if __name__ == '__main__':
+def list_all_services(root_dir):
+    data_dir = os.path.join(root_dir, 'botocore', 'data')
+    return [
+        d for d in os.listdir(data_dir)
+        if os.path.isdir(os.path.join(data_dir, d))
+    ]
+
+
+def main(args):
+    root_dir = SOURCE_DIR
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--with-all-services', action='store_true')
+    parsed_args = parser.parse_args(args)
+    if parsed_args.with_all_services:
+        services_to_generate = list_all_services(root_dir)
+    else:
+        services_to_generate = SERVICES_WHITELIST
+
     with open(BUILD_FILENAME, 'w') as bf:
-        generate_build(SOURCE_DIR, bf)
+        generate_build(root_dir, bf, args, services_to_generate)
+
+
+if __name__ == '__main__':
+    import sys
+    main(sys.argv[1:])

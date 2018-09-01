@@ -9,25 +9,1140 @@ data = $botocore/data
 clients = $botocore/_clients
 
 configure = $root/configure.py
+configure_args = --with-all-services
 
 # Scripts
 build-service-client = $root/scripts/build-service-client
 rule build-service-client
   command = $build-service-client $in $out
 
-build-service-init-module = $root/scripts/build-service-init-module
-rule build-service-init-module
-  command = $build-service-init-module $in $out
+build-service-default-init-module = $
+    $root/scripts/build-service-default-init-module
+rule build-service-default-init-module
+  command = $build-service-default-init-module $in $out
 
 # Services
+build $clients/appstream/v2016_12_01/service.py: build-service-client $
+    $data/appstream/2016-12-01/service-2.json | $build-service-client
+build $clients/appstream/__init__.py: build-service-default-init-module $
+    $data/appstream/2016-12-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/config/v2014_11_12/service.py: build-service-client $
+    $data/config/2014-11-12/service-2.json | $build-service-client
+build $clients/config/__init__.py: build-service-default-init-module $
+    $data/config/2014-11-12/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/ec2/v2015_10_01/service.py: build-service-client $
+    $data/ec2/2015-10-01/service-2.json | $build-service-client
+build $clients/ec2/v2014_10_01/service.py: build-service-client $
+    $data/ec2/2014-10-01/service-2.json | $build-service-client
+build $clients/ec2/v2016_04_01/service.py: build-service-client $
+    $data/ec2/2016-04-01/service-2.json | $build-service-client
+build $clients/ec2/v2015_03_01/service.py: build-service-client $
+    $data/ec2/2015-03-01/service-2.json | $build-service-client
+build $clients/ec2/v2014_09_01/service.py: build-service-client $
+    $data/ec2/2014-09-01/service-2.json | $build-service-client
+build $clients/ec2/v2016_11_15/service.py: build-service-client $
+    $data/ec2/2016-11-15/service-2.json | $build-service-client
+build $clients/ec2/v2015_04_15/service.py: build-service-client $
+    $data/ec2/2015-04-15/service-2.json | $build-service-client
+build $clients/ec2/v2016_09_15/service.py: build-service-client $
+    $data/ec2/2016-09-15/service-2.json | $build-service-client
+build $clients/ec2/__init__.py: build-service-default-init-module $
+    $data/ec2/2015-10-01/service-2.json $data/ec2/2014-10-01/service-2.json $
+    $data/ec2/2016-04-01/service-2.json $data/ec2/2015-03-01/service-2.json $
+    $data/ec2/2014-09-01/service-2.json $data/ec2/2016-11-15/service-2.json $
+    $data/ec2/2015-04-15/service-2.json $data/ec2/2016-09-15/service-2.json $
+    | $build-service-default-init-module
+
+build $clients/codedeploy/v2014_10_06/service.py: build-service-client $
+    $data/codedeploy/2014-10-06/service-2.json | $build-service-client
+build $clients/codedeploy/__init__.py: build-service-default-init-module $
+    $data/codedeploy/2014-10-06/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/macie/v2017_12_19/service.py: build-service-client $
+    $data/macie/2017-12-19/service-2.json | $build-service-client
+build $clients/macie/__init__.py: build-service-default-init-module $
+    $data/macie/2017-12-19/service-2.json | $build-service-default-init-module
+
+build $clients/pinpoint/v2016_12_01/service.py: build-service-client $
+    $data/pinpoint/2016-12-01/service-2.json | $build-service-client
+build $clients/pinpoint/__init__.py: build-service-default-init-module $
+    $data/pinpoint/2016-12-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/kinesisvideo/v2017_09_30/service.py: build-service-client $
+    $data/kinesisvideo/2017-09-30/service-2.json | $build-service-client
+build $clients/kinesisvideo/__init__.py: build-service-default-init-module $
+    $data/kinesisvideo/2017-09-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/workdocs/v2016_05_01/service.py: build-service-client $
+    $data/workdocs/2016-05-01/service-2.json | $build-service-client
+build $clients/workdocs/__init__.py: build-service-default-init-module $
+    $data/workdocs/2016-05-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cur/v2017_01_06/service.py: build-service-client $
+    $data/cur/2017-01-06/service-2.json | $build-service-client
+build $clients/cur/__init__.py: build-service-default-init-module $
+    $data/cur/2017-01-06/service-2.json | $build-service-default-init-module
+
+build $clients/logs/v2014_03_28/service.py: build-service-client $
+    $data/logs/2014-03-28/service-2.json | $build-service-client
+build $clients/logs/__init__.py: build-service-default-init-module $
+    $data/logs/2014-03-28/service-2.json | $build-service-default-init-module
+
+build $clients/cloud9/v2017_09_23/service.py: build-service-client $
+    $data/cloud9/2017-09-23/service-2.json | $build-service-client
+build $clients/cloud9/__init__.py: build-service-default-init-module $
+    $data/cloud9/2017-09-23/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/acm/v2015_12_08/service.py: build-service-client $
+    $data/acm/2015-12-08/service-2.json | $build-service-client
+build $clients/acm/__init__.py: build-service-default-init-module $
+    $data/acm/2015-12-08/service-2.json | $build-service-default-init-module
+
+build $clients/ses/v2010_12_01/service.py: build-service-client $
+    $data/ses/2010-12-01/service-2.json | $build-service-client
+build $clients/ses/__init__.py: build-service-default-init-module $
+    $data/ses/2010-12-01/service-2.json | $build-service-default-init-module
+
+build $clients/iotanalytics/v2017_11_27/service.py: build-service-client $
+    $data/iotanalytics/2017-11-27/service-2.json | $build-service-client
+build $clients/iotanalytics/__init__.py: build-service-default-init-module $
+    $data/iotanalytics/2017-11-27/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/machinelearning/v2014_12_12/service.py: build-service-client $
+    $data/machinelearning/2014-12-12/service-2.json | $build-service-client
+build $clients/machinelearning/__init__.py: $
+    build-service-default-init-module $
+    $data/machinelearning/2014-12-12/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/serverlessrepo/v2017_09_08/service.py: build-service-client $
+    $data/serverlessrepo/2017-09-08/service-2.json | $build-service-client
+build $clients/serverlessrepo/__init__.py: $
+    build-service-default-init-module $
+    $data/serverlessrepo/2017-09-08/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/kms/v2014_11_01/service.py: build-service-client $
+    $data/kms/2014-11-01/service-2.json | $build-service-client
+build $clients/kms/__init__.py: build-service-default-init-module $
+    $data/kms/2014-11-01/service-2.json | $build-service-default-init-module
+
+build $clients/mediaconvert/v2017_08_29/service.py: build-service-client $
+    $data/mediaconvert/2017-08-29/service-2.json | $build-service-client
+build $clients/mediaconvert/__init__.py: build-service-default-init-module $
+    $data/mediaconvert/2017-08-29/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/redshift/v2012_12_01/service.py: build-service-client $
+    $data/redshift/2012-12-01/service-2.json | $build-service-client
+build $clients/redshift/__init__.py: build-service-default-init-module $
+    $data/redshift/2012-12-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/shield/v2016_06_02/service.py: build-service-client $
+    $data/shield/2016-06-02/service-2.json | $build-service-client
+build $clients/shield/__init__.py: build-service-default-init-module $
+    $data/shield/2016-06-02/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/ds/v2015_04_16/service.py: build-service-client $
+    $data/ds/2015-04-16/service-2.json | $build-service-client
+build $clients/ds/__init__.py: build-service-default-init-module $
+    $data/ds/2015-04-16/service-2.json | $build-service-default-init-module
+
+build $clients/organizations/v2016_11_28/service.py: build-service-client $
+    $data/organizations/2016-11-28/service-2.json | $build-service-client
+build $clients/organizations/__init__.py: build-service-default-init-module $
+    $data/organizations/2016-11-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/inspector/v2015_08_18/service.py: build-service-client $
+    $data/inspector/2015-08-18/service-2.json | $build-service-client
+build $clients/inspector/v2016_02_16/service.py: build-service-client $
+    $data/inspector/2016-02-16/service-2.json | $build-service-client
+build $clients/inspector/__init__.py: build-service-default-init-module $
+    $data/inspector/2015-08-18/service-2.json $
+    $data/inspector/2016-02-16/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/secretsmanager/v2017_10_17/service.py: build-service-client $
+    $data/secretsmanager/2017-10-17/service-2.json | $build-service-client
+build $clients/secretsmanager/__init__.py: $
+    build-service-default-init-module $
+    $data/secretsmanager/2017-10-17/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/gamelift/v2015_10_01/service.py: build-service-client $
+    $data/gamelift/2015-10-01/service-2.json | $build-service-client
+build $clients/gamelift/__init__.py: build-service-default-init-module $
+    $data/gamelift/2015-10-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/s3/v2006_03_01/service.py: build-service-client $
+    $data/s3/2006-03-01/service-2.json | $build-service-client
+build $clients/s3/__init__.py: build-service-default-init-module $
+    $data/s3/2006-03-01/service-2.json | $build-service-default-init-module
+
+build $clients/waf-regional/v2016_11_28/service.py: build-service-client $
+    $data/waf-regional/2016-11-28/service-2.json | $build-service-client
+build $clients/waf-regional/__init__.py: build-service-default-init-module $
+    $data/waf-regional/2016-11-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/ce/v2017_10_25/service.py: build-service-client $
+    $data/ce/2017-10-25/service-2.json | $build-service-client
+build $clients/ce/__init__.py: build-service-default-init-module $
+    $data/ce/2017-10-25/service-2.json | $build-service-default-init-module
+
+build $clients/support/v2013_04_15/service.py: build-service-client $
+    $data/support/2013-04-15/service-2.json | $build-service-client
+build $clients/support/__init__.py: build-service-default-init-module $
+    $data/support/2013-04-15/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/neptune/v2014_10_31/service.py: build-service-client $
+    $data/neptune/2014-10-31/service-2.json | $build-service-client
+build $clients/neptune/__init__.py: build-service-default-init-module $
+    $data/neptune/2014-10-31/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/transcribe/v2017_10_26/service.py: build-service-client $
+    $data/transcribe/2017-10-26/service-2.json | $build-service-client
+build $clients/transcribe/__init__.py: build-service-default-init-module $
+    $data/transcribe/2017-10-26/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/elasticbeanstalk/v2010_12_01/service.py: $
+    build-service-client $data/elasticbeanstalk/2010-12-01/service-2.json | $
+    $build-service-client
+build $clients/elasticbeanstalk/__init__.py: $
+    build-service-default-init-module $
+    $data/elasticbeanstalk/2010-12-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/lightsail/v2016_11_28/service.py: build-service-client $
+    $data/lightsail/2016-11-28/service-2.json | $build-service-client
+build $clients/lightsail/__init__.py: build-service-default-init-module $
+    $data/lightsail/2016-11-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/iam/v2010_05_08/service.py: build-service-client $
+    $data/iam/2010-05-08/service-2.json | $build-service-client
+build $clients/iam/__init__.py: build-service-default-init-module $
+    $data/iam/2010-05-08/service-2.json | $build-service-default-init-module
+
+build $clients/elastictranscoder/v2012_09_25/service.py: $
+    build-service-client $data/elastictranscoder/2012-09-25/service-2.json $
+    | $build-service-client
+build $clients/elastictranscoder/__init__.py: $
+    build-service-default-init-module $
+    $data/elastictranscoder/2012-09-25/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/firehose/v2015_08_04/service.py: build-service-client $
+    $data/firehose/2015-08-04/service-2.json | $build-service-client
+build $clients/firehose/__init__.py: build-service-default-init-module $
+    $data/firehose/2015-08-04/service-2.json | $
+    $build-service-default-init-module
+
 build $clients/cloudwatch/v2010_08_01/service.py: build-service-client $
     $data/cloudwatch/2010-08-01/service-2.json | $build-service-client
-build $clients/cloudwatch/__init__.py: build-service-init-module $
-    $data/cloudwatch/2010-08-01/service-2.json | $build-service-init-module
+build $clients/cloudwatch/__init__.py: build-service-default-init-module $
+    $data/cloudwatch/2010-08-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/ecr/v2015_09_21/service.py: build-service-client $
+    $data/ecr/2015-09-21/service-2.json | $build-service-client
+build $clients/ecr/__init__.py: build-service-default-init-module $
+    $data/ecr/2015-09-21/service-2.json | $build-service-default-init-module
+
+build $clients/budgets/v2016_10_20/service.py: build-service-client $
+    $data/budgets/2016-10-20/service-2.json | $build-service-client
+build $clients/budgets/__init__.py: build-service-default-init-module $
+    $data/budgets/2016-10-20/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/sagemaker-runtime/v2017_05_13/service.py: $
+    build-service-client $data/sagemaker-runtime/2017-05-13/service-2.json $
+    | $build-service-client
+build $clients/sagemaker-runtime/__init__.py: $
+    build-service-default-init-module $
+    $data/sagemaker-runtime/2017-05-13/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/marketplacecommerceanalytics/v2015_07_01/service.py: $
+    build-service-client $
+    $data/marketplacecommerceanalytics/2015-07-01/service-2.json | $
+    $build-service-client
+build $clients/marketplacecommerceanalytics/__init__.py: $
+    build-service-default-init-module $
+    $data/marketplacecommerceanalytics/2015-07-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/codepipeline/v2015_07_09/service.py: build-service-client $
+    $data/codepipeline/2015-07-09/service-2.json | $build-service-client
+build $clients/codepipeline/__init__.py: build-service-default-init-module $
+    $data/codepipeline/2015-07-09/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/dynamodbstreams/v2012_08_10/service.py: build-service-client $
+    $data/dynamodbstreams/2012-08-10/service-2.json | $build-service-client
+build $clients/dynamodbstreams/__init__.py: $
+    build-service-default-init-module $
+    $data/dynamodbstreams/2012-08-10/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/efs/v2015_02_01/service.py: build-service-client $
+    $data/efs/2015-02-01/service-2.json | $build-service-client
+build $clients/efs/__init__.py: build-service-default-init-module $
+    $data/efs/2015-02-01/service-2.json | $build-service-default-init-module
+
+build $clients/dax/v2017_04_19/service.py: build-service-client $
+    $data/dax/2017-04-19/service-2.json | $build-service-client
+build $clients/dax/__init__.py: build-service-default-init-module $
+    $data/dax/2017-04-19/service-2.json | $build-service-default-init-module
+
+build $clients/events/v2015_10_07/service.py: build-service-client $
+    $data/events/2015-10-07/service-2.json | $build-service-client
+build $clients/events/v2014_02_03/service.py: build-service-client $
+    $data/events/2014-02-03/service-2.json | $build-service-client
+build $clients/events/__init__.py: build-service-default-init-module $
+    $data/events/2015-10-07/service-2.json $
+    $data/events/2014-02-03/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/mediastore-data/v2017_09_01/service.py: build-service-client $
+    $data/mediastore-data/2017-09-01/service-2.json | $build-service-client
+build $clients/mediastore-data/__init__.py: $
+    build-service-default-init-module $
+    $data/mediastore-data/2017-09-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/mgh/v2017_05_31/service.py: build-service-client $
+    $data/mgh/2017-05-31/service-2.json | $build-service-client
+build $clients/mgh/__init__.py: build-service-default-init-module $
+    $data/mgh/2017-05-31/service-2.json | $build-service-default-init-module
+
+build $clients/appsync/v2017_07_25/service.py: build-service-client $
+    $data/appsync/2017-07-25/service-2.json | $build-service-client
+build $clients/appsync/__init__.py: build-service-default-init-module $
+    $data/appsync/2017-07-25/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/sagemaker/v2017_07_24/service.py: build-service-client $
+    $data/sagemaker/2017-07-24/service-2.json | $build-service-client
+build $clients/sagemaker/__init__.py: build-service-default-init-module $
+    $data/sagemaker/2017-07-24/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/acm-pca/v2017_08_22/service.py: build-service-client $
+    $data/acm-pca/2017-08-22/service-2.json | $build-service-client
+build $clients/acm-pca/__init__.py: build-service-default-init-module $
+    $data/acm-pca/2017-08-22/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/iot1click-devices/v2018_05_14/service.py: $
+    build-service-client $data/iot1click-devices/2018-05-14/service-2.json $
+    | $build-service-client
+build $clients/iot1click-devices/__init__.py: $
+    build-service-default-init-module $
+    $data/iot1click-devices/2018-05-14/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/kinesisanalytics/v2015_08_14/service.py: $
+    build-service-client $data/kinesisanalytics/2015-08-14/service-2.json | $
+    $build-service-client
+build $clients/kinesisanalytics/__init__.py: $
+    build-service-default-init-module $
+    $data/kinesisanalytics/2015-08-14/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/meteringmarketplace/v2016_01_14/service.py: $
+    build-service-client $
+    $data/meteringmarketplace/2016-01-14/service-2.json | $
+    $build-service-client
+build $clients/meteringmarketplace/__init__.py: $
+    build-service-default-init-module $
+    $data/meteringmarketplace/2016-01-14/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/iot-data/v2015_05_28/service.py: build-service-client $
+    $data/iot-data/2015-05-28/service-2.json | $build-service-client
+build $clients/iot-data/__init__.py: build-service-default-init-module $
+    $data/iot-data/2015-05-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/glacier/v2012_06_01/service.py: build-service-client $
+    $data/glacier/2012-06-01/service-2.json | $build-service-client
+build $clients/glacier/__init__.py: build-service-default-init-module $
+    $data/glacier/2012-06-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/sqs/v2012_11_05/service.py: build-service-client $
+    $data/sqs/2012-11-05/service-2.json | $build-service-client
+build $clients/sqs/__init__.py: build-service-default-init-module $
+    $data/sqs/2012-11-05/service-2.json | $build-service-default-init-module
+
+build $clients/es/v2015_01_01/service.py: build-service-client $
+    $data/es/2015-01-01/service-2.json | $build-service-client
+build $clients/es/__init__.py: build-service-default-init-module $
+    $data/es/2015-01-01/service-2.json | $build-service-default-init-module
+
+build $clients/dynamodb/v2012_08_10/service.py: build-service-client $
+    $data/dynamodb/2012-08-10/service-2.json | $build-service-client
+build $clients/dynamodb/__init__.py: build-service-default-init-module $
+    $data/dynamodb/2012-08-10/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/iot1click-projects/v2018_05_14/service.py: $
+    build-service-client $data/iot1click-projects/2018-05-14/service-2.json $
+    | $build-service-client
+build $clients/iot1click-projects/__init__.py: $
+    build-service-default-init-module $
+    $data/iot1click-projects/2018-05-14/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/ecs/v2014_11_13/service.py: build-service-client $
+    $data/ecs/2014-11-13/service-2.json | $build-service-client
+build $clients/ecs/__init__.py: build-service-default-init-module $
+    $data/ecs/2014-11-13/service-2.json | $build-service-default-init-module
+
+build $clients/swf/v2012_01_25/service.py: build-service-client $
+    $data/swf/2012-01-25/service-2.json | $build-service-client
+build $clients/swf/__init__.py: build-service-default-init-module $
+    $data/swf/2012-01-25/service-2.json | $build-service-default-init-module
+
+build $clients/connect/v2017_08_08/service.py: build-service-client $
+    $data/connect/2017-08-08/service-2.json | $build-service-client
+build $clients/connect/__init__.py: build-service-default-init-module $
+    $data/connect/2017-08-08/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/workspaces/v2015_04_08/service.py: build-service-client $
+    $data/workspaces/2015-04-08/service-2.json | $build-service-client
+build $clients/workspaces/__init__.py: build-service-default-init-module $
+    $data/workspaces/2015-04-08/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cognito-idp/v2016_04_18/service.py: build-service-client $
+    $data/cognito-idp/2016-04-18/service-2.json | $build-service-client
+build $clients/cognito-idp/__init__.py: build-service-default-init-module $
+    $data/cognito-idp/2016-04-18/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/glue/v2017_03_31/service.py: build-service-client $
+    $data/glue/2017-03-31/service-2.json | $build-service-client
+build $clients/glue/__init__.py: build-service-default-init-module $
+    $data/glue/2017-03-31/service-2.json | $build-service-default-init-module
+
+build $clients/ssm/v2014_11_06/service.py: build-service-client $
+    $data/ssm/2014-11-06/service-2.json | $build-service-client
+build $clients/ssm/__init__.py: build-service-default-init-module $
+    $data/ssm/2014-11-06/service-2.json | $build-service-default-init-module
+
+build $clients/kinesis-video-media/v2017_09_30/service.py: $
+    build-service-client $
+    $data/kinesis-video-media/2017-09-30/service-2.json | $
+    $build-service-client
+build $clients/kinesis-video-media/__init__.py: $
+    build-service-default-init-module $
+    $data/kinesis-video-media/2017-09-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/dlm/v2018_01_12/service.py: build-service-client $
+    $data/dlm/2018-01-12/service-2.json | $build-service-client
+build $clients/dlm/__init__.py: build-service-default-init-module $
+    $data/dlm/2018-01-12/service-2.json | $build-service-default-init-module
+
+build $clients/elasticache/v2014_09_30/service.py: build-service-client $
+    $data/elasticache/2014-09-30/service-2.json | $build-service-client
+build $clients/elasticache/v2015_02_02/service.py: build-service-client $
+    $data/elasticache/2015-02-02/service-2.json | $build-service-client
+build $clients/elasticache/__init__.py: build-service-default-init-module $
+    $data/elasticache/2014-09-30/service-2.json $
+    $data/elasticache/2015-02-02/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/servicecatalog/v2015_12_10/service.py: build-service-client $
+    $data/servicecatalog/2015-12-10/service-2.json | $build-service-client
+build $clients/servicecatalog/__init__.py: $
+    build-service-default-init-module $
+    $data/servicecatalog/2015-12-10/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/lambda/v2015_03_31/service.py: build-service-client $
+    $data/lambda/2015-03-31/service-2.json | $build-service-client
+build $clients/lambda/v2014_11_11/service.py: build-service-client $
+    $data/lambda/2014-11-11/service-2.json | $build-service-client
+build $clients/lambda/__init__.py: build-service-default-init-module $
+    $data/lambda/2015-03-31/service-2.json $
+    $data/lambda/2014-11-11/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/emr/v2009_03_31/service.py: build-service-client $
+    $data/emr/2009-03-31/service-2.json | $build-service-client
+build $clients/emr/__init__.py: build-service-default-init-module $
+    $data/emr/2009-03-31/service-2.json | $build-service-default-init-module
+
+build $clients/batch/v2016_08_10/service.py: build-service-client $
+    $data/batch/2016-08-10/service-2.json | $build-service-client
+build $clients/batch/__init__.py: build-service-default-init-module $
+    $data/batch/2016-08-10/service-2.json | $build-service-default-init-module
+
+build $clients/dms/v2016_01_01/service.py: build-service-client $
+    $data/dms/2016-01-01/service-2.json | $build-service-client
+build $clients/dms/__init__.py: build-service-default-init-module $
+    $data/dms/2016-01-01/service-2.json | $build-service-default-init-module
+
+build $clients/guardduty/v2017_11_28/service.py: build-service-client $
+    $data/guardduty/2017-11-28/service-2.json | $build-service-client
+build $clients/guardduty/__init__.py: build-service-default-init-module $
+    $data/guardduty/2017-11-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cloudsearch/v2013_01_01/service.py: build-service-client $
+    $data/cloudsearch/2013-01-01/service-2.json | $build-service-client
+build $clients/cloudsearch/v2011_02_01/service.py: build-service-client $
+    $data/cloudsearch/2011-02-01/service-2.json | $build-service-client
+build $clients/cloudsearch/__init__.py: build-service-default-init-module $
+    $data/cloudsearch/2013-01-01/service-2.json $
+    $data/cloudsearch/2011-02-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cloudformation/v2010_05_15/service.py: build-service-client $
+    $data/cloudformation/2010-05-15/service-2.json | $build-service-client
+build $clients/cloudformation/__init__.py: $
+    build-service-default-init-module $
+    $data/cloudformation/2010-05-15/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/elb/v2012_06_01/service.py: build-service-client $
+    $data/elb/2012-06-01/service-2.json | $build-service-client
+build $clients/elb/__init__.py: build-service-default-init-module $
+    $data/elb/2012-06-01/service-2.json | $build-service-default-init-module
+
+build $clients/kinesis-video-archived-media/v2017_09_30/service.py: $
+    build-service-client $
+    $data/kinesis-video-archived-media/2017-09-30/service-2.json | $
+    $build-service-client
+build $clients/kinesis-video-archived-media/__init__.py: $
+    build-service-default-init-module $
+    $data/kinesis-video-archived-media/2017-09-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/pricing/v2017_10_15/service.py: build-service-client $
+    $data/pricing/2017-10-15/service-2.json | $build-service-client
+build $clients/pricing/__init__.py: build-service-default-init-module $
+    $data/pricing/2017-10-15/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/athena/v2017_05_18/service.py: build-service-client $
+    $data/athena/2017-05-18/service-2.json | $build-service-client
+build $clients/athena/__init__.py: build-service-default-init-module $
+    $data/athena/2017-05-18/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/autoscaling/v2011_01_01/service.py: build-service-client $
+    $data/autoscaling/2011-01-01/service-2.json | $build-service-client
+build $clients/autoscaling/__init__.py: build-service-default-init-module $
+    $data/autoscaling/2011-01-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/polly/v2016_06_10/service.py: build-service-client $
+    $data/polly/2016-06-10/service-2.json | $build-service-client
+build $clients/polly/__init__.py: build-service-default-init-module $
+    $data/polly/2016-06-10/service-2.json | $build-service-default-init-module
+
+build $clients/codebuild/v2016_10_06/service.py: build-service-client $
+    $data/codebuild/2016-10-06/service-2.json | $build-service-client
+build $clients/codebuild/__init__.py: build-service-default-init-module $
+    $data/codebuild/2016-10-06/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cloudhsmv2/v2017_04_28/service.py: build-service-client $
+    $data/cloudhsmv2/2017-04-28/service-2.json | $build-service-client
+build $clients/cloudhsmv2/__init__.py: build-service-default-init-module $
+    $data/cloudhsmv2/2017-04-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/comprehend/v2017_11_27/service.py: build-service-client $
+    $data/comprehend/2017-11-27/service-2.json | $build-service-client
+build $clients/comprehend/__init__.py: build-service-default-init-module $
+    $data/comprehend/2017-11-27/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/mq/v2017_11_27/service.py: build-service-client $
+    $data/mq/2017-11-27/service-2.json | $build-service-client
+build $clients/mq/__init__.py: build-service-default-init-module $
+    $data/mq/2017-11-27/service-2.json | $build-service-default-init-module
+
+build $clients/pi/v2018_02_27/service.py: build-service-client $
+    $data/pi/2018-02-27/service-2.json | $build-service-client
+build $clients/pi/__init__.py: build-service-default-init-module $
+    $data/pi/2018-02-27/service-2.json | $build-service-default-init-module
+
+build $clients/codestar/v2017_04_19/service.py: build-service-client $
+    $data/codestar/2017-04-19/service-2.json | $build-service-client
+build $clients/codestar/__init__.py: build-service-default-init-module $
+    $data/codestar/2017-04-19/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/mediatailor/v2018_04_23/service.py: build-service-client $
+    $data/mediatailor/2018-04-23/service-2.json | $build-service-client
+build $clients/mediatailor/__init__.py: build-service-default-init-module $
+    $data/mediatailor/2018-04-23/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/discovery/v2015_11_01/service.py: build-service-client $
+    $data/discovery/2015-11-01/service-2.json | $build-service-client
+build $clients/discovery/__init__.py: build-service-default-init-module $
+    $data/discovery/2015-11-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/route53/v2013_04_01/service.py: build-service-client $
+    $data/route53/2013-04-01/service-2.json | $build-service-client
+build $clients/route53/__init__.py: build-service-default-init-module $
+    $data/route53/2013-04-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/medialive/v2017_10_14/service.py: build-service-client $
+    $data/medialive/2017-10-14/service-2.json | $build-service-client
+build $clients/medialive/__init__.py: build-service-default-init-module $
+    $data/medialive/2017-10-14/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/resourcegroupstaggingapi/v2017_01_26/service.py: $
+    build-service-client $
+    $data/resourcegroupstaggingapi/2017-01-26/service-2.json | $
+    $build-service-client
+build $clients/resourcegroupstaggingapi/__init__.py: $
+    build-service-default-init-module $
+    $data/resourcegroupstaggingapi/2017-01-26/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/sts/v2011_06_15/service.py: build-service-client $
+    $data/sts/2011-06-15/service-2.json | $build-service-client
+build $clients/sts/__init__.py: build-service-default-init-module $
+    $data/sts/2011-06-15/service-2.json | $build-service-default-init-module
+
+build $clients/cloudfront/v2014_10_21/service.py: build-service-client $
+    $data/cloudfront/2014-10-21/service-2.json | $build-service-client
+build $clients/cloudfront/v2016_09_29/service.py: build-service-client $
+    $data/cloudfront/2016-09-29/service-2.json | $build-service-client
+build $clients/cloudfront/v2014_05_31/service.py: build-service-client $
+    $data/cloudfront/2014-05-31/service-2.json | $build-service-client
+build $clients/cloudfront/v2014_11_06/service.py: build-service-client $
+    $data/cloudfront/2014-11-06/service-2.json | $build-service-client
+build $clients/cloudfront/v2015_04_17/service.py: build-service-client $
+    $data/cloudfront/2015-04-17/service-2.json | $build-service-client
+build $clients/cloudfront/v2016_08_01/service.py: build-service-client $
+    $data/cloudfront/2016-08-01/service-2.json | $build-service-client
+build $clients/cloudfront/v2016_09_07/service.py: build-service-client $
+    $data/cloudfront/2016-09-07/service-2.json | $build-service-client
+build $clients/cloudfront/v2017_10_30/service.py: build-service-client $
+    $data/cloudfront/2017-10-30/service-2.json | $build-service-client
+build $clients/cloudfront/v2016_08_20/service.py: build-service-client $
+    $data/cloudfront/2016-08-20/service-2.json | $build-service-client
+build $clients/cloudfront/v2015_09_17/service.py: build-service-client $
+    $data/cloudfront/2015-09-17/service-2.json | $build-service-client
+build $clients/cloudfront/v2017_03_25/service.py: build-service-client $
+    $data/cloudfront/2017-03-25/service-2.json | $build-service-client
+build $clients/cloudfront/v2015_07_27/service.py: build-service-client $
+    $data/cloudfront/2015-07-27/service-2.json | $build-service-client
+build $clients/cloudfront/v2016_01_13/service.py: build-service-client $
+    $data/cloudfront/2016-01-13/service-2.json | $build-service-client
+build $clients/cloudfront/v2016_11_25/service.py: build-service-client $
+    $data/cloudfront/2016-11-25/service-2.json | $build-service-client
+build $clients/cloudfront/v2016_01_28/service.py: build-service-client $
+    $data/cloudfront/2016-01-28/service-2.json | $build-service-client
+build $clients/cloudfront/__init__.py: build-service-default-init-module $
+    $data/cloudfront/2014-10-21/service-2.json $
+    $data/cloudfront/2016-09-29/service-2.json $
+    $data/cloudfront/2014-05-31/service-2.json $
+    $data/cloudfront/2014-11-06/service-2.json $
+    $data/cloudfront/2015-04-17/service-2.json $
+    $data/cloudfront/2016-08-01/service-2.json $
+    $data/cloudfront/2016-09-07/service-2.json $
+    $data/cloudfront/2017-10-30/service-2.json $
+    $data/cloudfront/2016-08-20/service-2.json $
+    $data/cloudfront/2015-09-17/service-2.json $
+    $data/cloudfront/2017-03-25/service-2.json $
+    $data/cloudfront/2015-07-27/service-2.json $
+    $data/cloudfront/2016-01-13/service-2.json $
+    $data/cloudfront/2016-11-25/service-2.json $
+    $data/cloudfront/2016-01-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/kinesis/v2013_12_02/service.py: build-service-client $
+    $data/kinesis/2013-12-02/service-2.json | $build-service-client
+build $clients/kinesis/__init__.py: build-service-default-init-module $
+    $data/kinesis/2013-12-02/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/servicediscovery/v2017_03_14/service.py: $
+    build-service-client $data/servicediscovery/2017-03-14/service-2.json | $
+    $build-service-client
+build $clients/servicediscovery/__init__.py: $
+    build-service-default-init-module $
+    $data/servicediscovery/2017-03-14/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cognito-sync/v2014_06_30/service.py: build-service-client $
+    $data/cognito-sync/2014-06-30/service-2.json | $build-service-client
+build $clients/cognito-sync/__init__.py: build-service-default-init-module $
+    $data/cognito-sync/2014-06-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/sns/v2010_03_31/service.py: build-service-client $
+    $data/sns/2010-03-31/service-2.json | $build-service-client
+build $clients/sns/__init__.py: build-service-default-init-module $
+    $data/sns/2010-03-31/service-2.json | $build-service-default-init-module
+
+build $clients/storagegateway/v2013_06_30/service.py: build-service-client $
+    $data/storagegateway/2013-06-30/service-2.json | $build-service-client
+build $clients/storagegateway/__init__.py: $
+    build-service-default-init-module $
+    $data/storagegateway/2013-06-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/directconnect/v2012_10_25/service.py: build-service-client $
+    $data/directconnect/2012-10-25/service-2.json | $build-service-client
+build $clients/directconnect/__init__.py: build-service-default-init-module $
+    $data/directconnect/2012-10-25/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/opsworkscm/v2016_11_01/service.py: build-service-client $
+    $data/opsworkscm/2016-11-01/service-2.json | $build-service-client
+build $clients/opsworkscm/__init__.py: build-service-default-init-module $
+    $data/opsworkscm/2016-11-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/importexport/v2010_06_01/service.py: build-service-client $
+    $data/importexport/2010-06-01/service-2.json | $build-service-client
+build $clients/importexport/__init__.py: build-service-default-init-module $
+    $data/importexport/2010-06-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/devicefarm/v2015_06_23/service.py: build-service-client $
+    $data/devicefarm/2015-06-23/service-2.json | $build-service-client
+build $clients/devicefarm/__init__.py: build-service-default-init-module $
+    $data/devicefarm/2015-06-23/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/mobile/v2017_07_01/service.py: build-service-client $
+    $data/mobile/2017-07-01/service-2.json | $build-service-client
+build $clients/mobile/__init__.py: build-service-default-init-module $
+    $data/mobile/2017-07-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/clouddirectory/v2017_01_11/service.py: build-service-client $
+    $data/clouddirectory/2017-01-11/service-2.json | $build-service-client
+build $clients/clouddirectory/v2016_05_10/service.py: build-service-client $
+    $data/clouddirectory/2016-05-10/service-2.json | $build-service-client
+build $clients/clouddirectory/__init__.py: $
+    build-service-default-init-module $
+    $data/clouddirectory/2017-01-11/service-2.json $
+    $data/clouddirectory/2016-05-10/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cloudsearchdomain/v2013_01_01/service.py: $
+    build-service-client $data/cloudsearchdomain/2013-01-01/service-2.json $
+    | $build-service-client
+build $clients/cloudsearchdomain/__init__.py: $
+    build-service-default-init-module $
+    $data/cloudsearchdomain/2013-01-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/workmail/v2017_10_01/service.py: build-service-client $
+    $data/workmail/2017-10-01/service-2.json | $build-service-client
+build $clients/workmail/__init__.py: build-service-default-init-module $
+    $data/workmail/2017-10-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/rds/v2014_10_31/service.py: build-service-client $
+    $data/rds/2014-10-31/service-2.json | $build-service-client
+build $clients/rds/v2014_09_01/service.py: build-service-client $
+    $data/rds/2014-09-01/service-2.json | $build-service-client
+build $clients/rds/__init__.py: build-service-default-init-module $
+    $data/rds/2014-10-31/service-2.json $data/rds/2014-09-01/service-2.json $
+    | $build-service-default-init-module
+
+build $clients/mediapackage/v2017_10_12/service.py: build-service-client $
+    $data/mediapackage/2017-10-12/service-2.json | $build-service-client
+build $clients/mediapackage/__init__.py: build-service-default-init-module $
+    $data/mediapackage/2017-10-12/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/cognito-identity/v2014_06_30/service.py: $
+    build-service-client $data/cognito-identity/2014-06-30/service-2.json | $
+    $build-service-client
+build $clients/cognito-identity/__init__.py: $
+    build-service-default-init-module $
+    $data/cognito-identity/2014-06-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/eks/v2017_11_01/service.py: build-service-client $
+    $data/eks/2017-11-01/service-2.json | $build-service-client
+build $clients/eks/__init__.py: build-service-default-init-module $
+    $data/eks/2017-11-01/service-2.json | $build-service-default-init-module
+
+build $clients/snowball/v2016_06_30/service.py: build-service-client $
+    $data/snowball/2016-06-30/service-2.json | $build-service-client
+build $clients/snowball/__init__.py: build-service-default-init-module $
+    $data/snowball/2016-06-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/mturk/v2017_01_17/service.py: build-service-client $
+    $data/mturk/2017-01-17/service-2.json | $build-service-client
+build $clients/mturk/__init__.py: build-service-default-init-module $
+    $data/mturk/2017-01-17/service-2.json | $build-service-default-init-module
+
+build $clients/fms/v2018_01_01/service.py: build-service-client $
+    $data/fms/2018-01-01/service-2.json | $build-service-client
+build $clients/fms/__init__.py: build-service-default-init-module $
+    $data/fms/2018-01-01/service-2.json | $build-service-default-init-module
+
+build $clients/sdb/v2009_04_15/service.py: build-service-client $
+    $data/sdb/2009-04-15/service-2.json | $build-service-client
+build $clients/sdb/__init__.py: build-service-default-init-module $
+    $data/sdb/2009-04-15/service-2.json | $build-service-default-init-module
+
+build $clients/cloudtrail/v2013_11_01/service.py: build-service-client $
+    $data/cloudtrail/2013-11-01/service-2.json | $build-service-client
+build $clients/cloudtrail/__init__.py: build-service-default-init-module $
+    $data/cloudtrail/2013-11-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/health/v2016_08_04/service.py: build-service-client $
+    $data/health/2016-08-04/service-2.json | $build-service-client
+build $clients/health/__init__.py: build-service-default-init-module $
+    $data/health/2016-08-04/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/marketplace-entitlement/v2017_01_11/service.py: $
+    build-service-client $
+    $data/marketplace-entitlement/2017-01-11/service-2.json | $
+    $build-service-client
+build $clients/marketplace-entitlement/__init__.py: $
+    build-service-default-init-module $
+    $data/marketplace-entitlement/2017-01-11/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/waf/v2015_08_24/service.py: build-service-client $
+    $data/waf/2015-08-24/service-2.json | $build-service-client
+build $clients/waf/__init__.py: build-service-default-init-module $
+    $data/waf/2015-08-24/service-2.json | $build-service-default-init-module
+
+build $clients/sms/v2016_10_24/service.py: build-service-client $
+    $data/sms/2016-10-24/service-2.json | $build-service-client
+build $clients/sms/__init__.py: build-service-default-init-module $
+    $data/sms/2016-10-24/service-2.json | $build-service-default-init-module
+
+build $clients/lex-runtime/v2016_11_28/service.py: build-service-client $
+    $data/lex-runtime/2016-11-28/service-2.json | $build-service-client
+build $clients/lex-runtime/__init__.py: build-service-default-init-module $
+    $data/lex-runtime/2016-11-28/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/mediastore/v2017_09_01/service.py: build-service-client $
+    $data/mediastore/2017-09-01/service-2.json | $build-service-client
+build $clients/mediastore/__init__.py: build-service-default-init-module $
+    $data/mediastore/2017-09-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/xray/v2016_04_12/service.py: build-service-client $
+    $data/xray/2016-04-12/service-2.json | $build-service-client
+build $clients/xray/__init__.py: build-service-default-init-module $
+    $data/xray/2016-04-12/service-2.json | $build-service-default-init-module
+
+build $clients/codecommit/v2015_04_13/service.py: build-service-client $
+    $data/codecommit/2015-04-13/service-2.json | $build-service-client
+build $clients/codecommit/__init__.py: build-service-default-init-module $
+    $data/codecommit/2015-04-13/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/iot-jobs-data/v2017_09_29/service.py: build-service-client $
+    $data/iot-jobs-data/2017-09-29/service-2.json | $build-service-client
+build $clients/iot-jobs-data/__init__.py: build-service-default-init-module $
+    $data/iot-jobs-data/2017-09-29/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/alexaforbusiness/v2017_11_09/service.py: $
+    build-service-client $data/alexaforbusiness/2017-11-09/service-2.json | $
+    $build-service-client
+build $clients/alexaforbusiness/__init__.py: $
+    build-service-default-init-module $
+    $data/alexaforbusiness/2017-11-09/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/lex-models/v2017_04_19/service.py: build-service-client $
+    $data/lex-models/2017-04-19/service-2.json | $build-service-client
+build $clients/lex-models/__init__.py: build-service-default-init-module $
+    $data/lex-models/2017-04-19/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/autoscaling-plans/v2018_01_06/service.py: $
+    build-service-client $data/autoscaling-plans/2018-01-06/service-2.json $
+    | $build-service-client
+build $clients/autoscaling-plans/__init__.py: $
+    build-service-default-init-module $
+    $data/autoscaling-plans/2018-01-06/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/resource-groups/v2017_11_27/service.py: build-service-client $
+    $data/resource-groups/2017-11-27/service-2.json | $build-service-client
+build $clients/resource-groups/__init__.py: $
+    build-service-default-init-module $
+    $data/resource-groups/2017-11-27/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/datapipeline/v2012_10_29/service.py: build-service-client $
+    $data/datapipeline/2012-10-29/service-2.json | $build-service-client
+build $clients/datapipeline/__init__.py: build-service-default-init-module $
+    $data/datapipeline/2012-10-29/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/opsworks/v2013_02_18/service.py: build-service-client $
+    $data/opsworks/2013-02-18/service-2.json | $build-service-client
+build $clients/opsworks/__init__.py: build-service-default-init-module $
+    $data/opsworks/2013-02-18/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/apigateway/v2015_07_09/service.py: build-service-client $
+    $data/apigateway/2015-07-09/service-2.json | $build-service-client
+build $clients/apigateway/__init__.py: build-service-default-init-module $
+    $data/apigateway/2015-07-09/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/route53domains/v2014_05_15/service.py: build-service-client $
+    $data/route53domains/2014-05-15/service-2.json | $build-service-client
+build $clients/route53domains/__init__.py: $
+    build-service-default-init-module $
+    $data/route53domains/2014-05-15/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/translate/v2017_07_01/service.py: build-service-client $
+    $data/translate/2017-07-01/service-2.json | $build-service-client
+build $clients/translate/__init__.py: build-service-default-init-module $
+    $data/translate/2017-07-01/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/elbv2/v2015_12_01/service.py: build-service-client $
+    $data/elbv2/2015-12-01/service-2.json | $build-service-client
+build $clients/elbv2/__init__.py: build-service-default-init-module $
+    $data/elbv2/2015-12-01/service-2.json | $build-service-default-init-module
+
+build $clients/stepfunctions/v2016_11_23/service.py: build-service-client $
+    $data/stepfunctions/2016-11-23/service-2.json | $build-service-client
+build $clients/stepfunctions/__init__.py: build-service-default-init-module $
+    $data/stepfunctions/2016-11-23/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/greengrass/v2017_06_07/service.py: build-service-client $
+    $data/greengrass/2017-06-07/service-2.json | $build-service-client
+build $clients/greengrass/__init__.py: build-service-default-init-module $
+    $data/greengrass/2017-06-07/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/iot/v2015_05_28/service.py: build-service-client $
+    $data/iot/2015-05-28/service-2.json | $build-service-client
+build $clients/iot/__init__.py: build-service-default-init-module $
+    $data/iot/2015-05-28/service-2.json | $build-service-default-init-module
+
+build $clients/cloudhsm/v2014_05_30/service.py: build-service-client $
+    $data/cloudhsm/2014-05-30/service-2.json | $build-service-client
+build $clients/cloudhsm/__init__.py: build-service-default-init-module $
+    $data/cloudhsm/2014-05-30/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/rekognition/v2016_06_27/service.py: build-service-client $
+    $data/rekognition/2016-06-27/service-2.json | $build-service-client
+build $clients/rekognition/__init__.py: build-service-default-init-module $
+    $data/rekognition/2016-06-27/service-2.json | $
+    $build-service-default-init-module
+
+build $clients/application-autoscaling/v2016_02_06/service.py: $
+    build-service-client $
+    $data/application-autoscaling/2016-02-06/service-2.json | $
+    $build-service-client
+build $clients/application-autoscaling/__init__.py: $
+    build-service-default-init-module $
+    $data/application-autoscaling/2016-02-06/service-2.json | $
+    $build-service-default-init-module
 
 # Regenerate build files if build script changes.
 rule configure
-  command = $configure
+  command = $configure $configure_args
+  generator = 1
 build build.ninja: configure | $configure
 
-build all: phony $clients/cloudwatch/v2010_08_01/service.py
+build all: phony $clients/appstream/v2016_12_01/service.py $
+    $clients/config/v2014_11_12/service.py $
+    $clients/ec2/v2015_10_01/service.py $clients/ec2/v2014_10_01/service.py $
+    $clients/ec2/v2016_04_01/service.py $clients/ec2/v2015_03_01/service.py $
+    $clients/ec2/v2014_09_01/service.py $clients/ec2/v2016_11_15/service.py $
+    $clients/ec2/v2015_04_15/service.py $clients/ec2/v2016_09_15/service.py $
+    $clients/codedeploy/v2014_10_06/service.py $
+    $clients/macie/v2017_12_19/service.py $
+    $clients/pinpoint/v2016_12_01/service.py $
+    $clients/kinesisvideo/v2017_09_30/service.py $
+    $clients/workdocs/v2016_05_01/service.py $
+    $clients/cur/v2017_01_06/service.py $
+    $clients/logs/v2014_03_28/service.py $
+    $clients/cloud9/v2017_09_23/service.py $
+    $clients/acm/v2015_12_08/service.py $clients/ses/v2010_12_01/service.py $
+    $clients/iotanalytics/v2017_11_27/service.py $
+    $clients/machinelearning/v2014_12_12/service.py $
+    $clients/serverlessrepo/v2017_09_08/service.py $
+    $clients/kms/v2014_11_01/service.py $
+    $clients/mediaconvert/v2017_08_29/service.py $
+    $clients/redshift/v2012_12_01/service.py $
+    $clients/shield/v2016_06_02/service.py $
+    $clients/ds/v2015_04_16/service.py $
+    $clients/organizations/v2016_11_28/service.py $
+    $clients/inspector/v2015_08_18/service.py $
+    $clients/inspector/v2016_02_16/service.py $
+    $clients/secretsmanager/v2017_10_17/service.py $
+    $clients/gamelift/v2015_10_01/service.py $
+    $clients/s3/v2006_03_01/service.py $
+    $clients/waf-regional/v2016_11_28/service.py $
+    $clients/ce/v2017_10_25/service.py $
+    $clients/support/v2013_04_15/service.py $
+    $clients/neptune/v2014_10_31/service.py $
+    $clients/transcribe/v2017_10_26/service.py $
+    $clients/elasticbeanstalk/v2010_12_01/service.py $
+    $clients/lightsail/v2016_11_28/service.py $
+    $clients/iam/v2010_05_08/service.py $
+    $clients/elastictranscoder/v2012_09_25/service.py $
+    $clients/firehose/v2015_08_04/service.py $
+    $clients/cloudwatch/v2010_08_01/service.py $
+    $clients/ecr/v2015_09_21/service.py $
+    $clients/budgets/v2016_10_20/service.py $
+    $clients/sagemaker-runtime/v2017_05_13/service.py $
+    $clients/marketplacecommerceanalytics/v2015_07_01/service.py $
+    $clients/codepipeline/v2015_07_09/service.py $
+    $clients/dynamodbstreams/v2012_08_10/service.py $
+    $clients/efs/v2015_02_01/service.py $clients/dax/v2017_04_19/service.py $
+    $clients/events/v2015_10_07/service.py $
+    $clients/events/v2014_02_03/service.py $
+    $clients/mediastore-data/v2017_09_01/service.py $
+    $clients/mgh/v2017_05_31/service.py $
+    $clients/appsync/v2017_07_25/service.py $
+    $clients/sagemaker/v2017_07_24/service.py $
+    $clients/acm-pca/v2017_08_22/service.py $
+    $clients/iot1click-devices/v2018_05_14/service.py $
+    $clients/kinesisanalytics/v2015_08_14/service.py $
+    $clients/meteringmarketplace/v2016_01_14/service.py $
+    $clients/iot-data/v2015_05_28/service.py $
+    $clients/glacier/v2012_06_01/service.py $
+    $clients/sqs/v2012_11_05/service.py $clients/es/v2015_01_01/service.py $
+    $clients/dynamodb/v2012_08_10/service.py $
+    $clients/iot1click-projects/v2018_05_14/service.py $
+    $clients/ecs/v2014_11_13/service.py $clients/swf/v2012_01_25/service.py $
+    $clients/connect/v2017_08_08/service.py $
+    $clients/workspaces/v2015_04_08/service.py $
+    $clients/cognito-idp/v2016_04_18/service.py $
+    $clients/glue/v2017_03_31/service.py $
+    $clients/ssm/v2014_11_06/service.py $
+    $clients/kinesis-video-media/v2017_09_30/service.py $
+    $clients/dlm/v2018_01_12/service.py $
+    $clients/elasticache/v2014_09_30/service.py $
+    $clients/elasticache/v2015_02_02/service.py $
+    $clients/servicecatalog/v2015_12_10/service.py $
+    $clients/lambda/v2015_03_31/service.py $
+    $clients/lambda/v2014_11_11/service.py $
+    $clients/emr/v2009_03_31/service.py $
+    $clients/batch/v2016_08_10/service.py $
+    $clients/dms/v2016_01_01/service.py $
+    $clients/guardduty/v2017_11_28/service.py $
+    $clients/cloudsearch/v2013_01_01/service.py $
+    $clients/cloudsearch/v2011_02_01/service.py $
+    $clients/cloudformation/v2010_05_15/service.py $
+    $clients/elb/v2012_06_01/service.py $
+    $clients/kinesis-video-archived-media/v2017_09_30/service.py $
+    $clients/pricing/v2017_10_15/service.py $
+    $clients/athena/v2017_05_18/service.py $
+    $clients/autoscaling/v2011_01_01/service.py $
+    $clients/polly/v2016_06_10/service.py $
+    $clients/codebuild/v2016_10_06/service.py $
+    $clients/cloudhsmv2/v2017_04_28/service.py $
+    $clients/comprehend/v2017_11_27/service.py $
+    $clients/mq/v2017_11_27/service.py $clients/pi/v2018_02_27/service.py $
+    $clients/codestar/v2017_04_19/service.py $
+    $clients/mediatailor/v2018_04_23/service.py $
+    $clients/discovery/v2015_11_01/service.py $
+    $clients/route53/v2013_04_01/service.py $
+    $clients/medialive/v2017_10_14/service.py $
+    $clients/resourcegroupstaggingapi/v2017_01_26/service.py $
+    $clients/sts/v2011_06_15/service.py $
+    $clients/cloudfront/v2014_10_21/service.py $
+    $clients/cloudfront/v2016_09_29/service.py $
+    $clients/cloudfront/v2014_05_31/service.py $
+    $clients/cloudfront/v2014_11_06/service.py $
+    $clients/cloudfront/v2015_04_17/service.py $
+    $clients/cloudfront/v2016_08_01/service.py $
+    $clients/cloudfront/v2016_09_07/service.py $
+    $clients/cloudfront/v2017_10_30/service.py $
+    $clients/cloudfront/v2016_08_20/service.py $
+    $clients/cloudfront/v2015_09_17/service.py $
+    $clients/cloudfront/v2017_03_25/service.py $
+    $clients/cloudfront/v2015_07_27/service.py $
+    $clients/cloudfront/v2016_01_13/service.py $
+    $clients/cloudfront/v2016_11_25/service.py $
+    $clients/cloudfront/v2016_01_28/service.py $
+    $clients/kinesis/v2013_12_02/service.py $
+    $clients/servicediscovery/v2017_03_14/service.py $
+    $clients/cognito-sync/v2014_06_30/service.py $
+    $clients/sns/v2010_03_31/service.py $
+    $clients/storagegateway/v2013_06_30/service.py $
+    $clients/directconnect/v2012_10_25/service.py $
+    $clients/opsworkscm/v2016_11_01/service.py $
+    $clients/importexport/v2010_06_01/service.py $
+    $clients/devicefarm/v2015_06_23/service.py $
+    $clients/mobile/v2017_07_01/service.py $
+    $clients/clouddirectory/v2017_01_11/service.py $
+    $clients/clouddirectory/v2016_05_10/service.py $
+    $clients/cloudsearchdomain/v2013_01_01/service.py $
+    $clients/workmail/v2017_10_01/service.py $
+    $clients/rds/v2014_10_31/service.py $clients/rds/v2014_09_01/service.py $
+    $clients/mediapackage/v2017_10_12/service.py $
+    $clients/cognito-identity/v2014_06_30/service.py $
+    $clients/eks/v2017_11_01/service.py $
+    $clients/snowball/v2016_06_30/service.py $
+    $clients/mturk/v2017_01_17/service.py $
+    $clients/fms/v2018_01_01/service.py $clients/sdb/v2009_04_15/service.py $
+    $clients/cloudtrail/v2013_11_01/service.py $
+    $clients/health/v2016_08_04/service.py $
+    $clients/marketplace-entitlement/v2017_01_11/service.py $
+    $clients/waf/v2015_08_24/service.py $clients/sms/v2016_10_24/service.py $
+    $clients/lex-runtime/v2016_11_28/service.py $
+    $clients/mediastore/v2017_09_01/service.py $
+    $clients/xray/v2016_04_12/service.py $
+    $clients/codecommit/v2015_04_13/service.py $
+    $clients/iot-jobs-data/v2017_09_29/service.py $
+    $clients/alexaforbusiness/v2017_11_09/service.py $
+    $clients/lex-models/v2017_04_19/service.py $
+    $clients/autoscaling-plans/v2018_01_06/service.py $
+    $clients/resource-groups/v2017_11_27/service.py $
+    $clients/datapipeline/v2012_10_29/service.py $
+    $clients/opsworks/v2013_02_18/service.py $
+    $clients/apigateway/v2015_07_09/service.py $
+    $clients/route53domains/v2014_05_15/service.py $
+    $clients/translate/v2017_07_01/service.py $
+    $clients/elbv2/v2015_12_01/service.py $
+    $clients/stepfunctions/v2016_11_23/service.py $
+    $clients/greengrass/v2017_06_07/service.py $
+    $clients/iot/v2015_05_28/service.py $
+    $clients/cloudhsm/v2014_05_30/service.py $
+    $clients/rekognition/v2016_06_27/service.py $
+    $clients/application-autoscaling/v2016_02_06/service.py
