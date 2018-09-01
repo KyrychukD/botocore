@@ -109,6 +109,7 @@ def generate_build(root, build_file, configure_args, services_to_generate):
 
     n.comment('Services')
 
+    all_services = []
     for service_name in services_to_generate:
         versions = get_service_versions(service_name, data_dir)
         assert versions, 'There must be more than 0 versions.'
@@ -134,7 +135,20 @@ def generate_build(root, build_file, configure_args, services_to_generate):
             # Force rebuild when modifying the script.
             implicit=['$build-service-default-init-module'],
         )
+        all_services.append(latest_init)
         n.newline()
+
+    n.variable(
+        'build-client-pyi',
+        os.path.join('$root', 'scripts', 'build-client-pyi'),
+    )
+    client_pyi = 'client_pyi'
+    n.rule(client_pyi, command='$build-client-pyi $clients $out')
+    n.build(
+        '$botocore/client.pyi',
+        rule=client_pyi,
+        implicit=all_services + ['$build-client-pyi'],
+    )
 
     n.comment('Regenerate build files if build script changes.')
     n.rule('configure', command='$configure $configure_args', generator=True)

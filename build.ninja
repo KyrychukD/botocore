@@ -980,6 +980,85 @@ build $clients/application-autoscaling/__init__.py: $
     $data/application-autoscaling/2016-02-06/service-2.json | $
     $build-service-default-init-module
 
+build-client-pyi = $root/scripts/build-client-pyi
+rule client_pyi
+  command = $build-client-pyi $clients $out
+build $botocore/client.pyi: client_pyi | $clients/appstream/__init__.py $
+    $clients/config/__init__.py $clients/ec2/__init__.py $
+    $clients/codedeploy/__init__.py $clients/macie/__init__.py $
+    $clients/pinpoint/__init__.py $clients/kinesisvideo/__init__.py $
+    $clients/workdocs/__init__.py $clients/cur/__init__.py $
+    $clients/logs/__init__.py $clients/cloud9/__init__.py $
+    $clients/acm/__init__.py $clients/ses/__init__.py $
+    $clients/iotanalytics/__init__.py $clients/machinelearning/__init__.py $
+    $clients/serverlessrepo/__init__.py $clients/kms/__init__.py $
+    $clients/mediaconvert/__init__.py $clients/redshift/__init__.py $
+    $clients/shield/__init__.py $clients/ds/__init__.py $
+    $clients/organizations/__init__.py $clients/inspector/__init__.py $
+    $clients/secretsmanager/__init__.py $clients/gamelift/__init__.py $
+    $clients/s3/__init__.py $clients/waf-regional/__init__.py $
+    $clients/ce/__init__.py $clients/support/__init__.py $
+    $clients/neptune/__init__.py $clients/transcribe/__init__.py $
+    $clients/elasticbeanstalk/__init__.py $clients/lightsail/__init__.py $
+    $clients/iam/__init__.py $clients/elastictranscoder/__init__.py $
+    $clients/firehose/__init__.py $clients/cloudwatch/__init__.py $
+    $clients/ecr/__init__.py $clients/budgets/__init__.py $
+    $clients/sagemaker-runtime/__init__.py $
+    $clients/marketplacecommerceanalytics/__init__.py $
+    $clients/codepipeline/__init__.py $clients/dynamodbstreams/__init__.py $
+    $clients/efs/__init__.py $clients/dax/__init__.py $
+    $clients/events/__init__.py $clients/mediastore-data/__init__.py $
+    $clients/mgh/__init__.py $clients/appsync/__init__.py $
+    $clients/sagemaker/__init__.py $clients/acm-pca/__init__.py $
+    $clients/iot1click-devices/__init__.py $
+    $clients/kinesisanalytics/__init__.py $
+    $clients/meteringmarketplace/__init__.py $clients/iot-data/__init__.py $
+    $clients/glacier/__init__.py $clients/sqs/__init__.py $
+    $clients/es/__init__.py $clients/dynamodb/__init__.py $
+    $clients/iot1click-projects/__init__.py $clients/ecs/__init__.py $
+    $clients/swf/__init__.py $clients/connect/__init__.py $
+    $clients/workspaces/__init__.py $clients/cognito-idp/__init__.py $
+    $clients/glue/__init__.py $clients/ssm/__init__.py $
+    $clients/kinesis-video-media/__init__.py $clients/dlm/__init__.py $
+    $clients/elasticache/__init__.py $clients/servicecatalog/__init__.py $
+    $clients/lambda/__init__.py $clients/emr/__init__.py $
+    $clients/batch/__init__.py $clients/dms/__init__.py $
+    $clients/guardduty/__init__.py $clients/cloudsearch/__init__.py $
+    $clients/cloudformation/__init__.py $clients/elb/__init__.py $
+    $clients/kinesis-video-archived-media/__init__.py $
+    $clients/pricing/__init__.py $clients/athena/__init__.py $
+    $clients/autoscaling/__init__.py $clients/polly/__init__.py $
+    $clients/codebuild/__init__.py $clients/cloudhsmv2/__init__.py $
+    $clients/comprehend/__init__.py $clients/mq/__init__.py $
+    $clients/pi/__init__.py $clients/codestar/__init__.py $
+    $clients/mediatailor/__init__.py $clients/discovery/__init__.py $
+    $clients/route53/__init__.py $clients/medialive/__init__.py $
+    $clients/resourcegroupstaggingapi/__init__.py $clients/sts/__init__.py $
+    $clients/cloudfront/__init__.py $clients/kinesis/__init__.py $
+    $clients/servicediscovery/__init__.py $clients/cognito-sync/__init__.py $
+    $clients/sns/__init__.py $clients/storagegateway/__init__.py $
+    $clients/directconnect/__init__.py $clients/opsworkscm/__init__.py $
+    $clients/importexport/__init__.py $clients/devicefarm/__init__.py $
+    $clients/mobile/__init__.py $clients/clouddirectory/__init__.py $
+    $clients/cloudsearchdomain/__init__.py $clients/workmail/__init__.py $
+    $clients/rds/__init__.py $clients/mediapackage/__init__.py $
+    $clients/cognito-identity/__init__.py $clients/eks/__init__.py $
+    $clients/snowball/__init__.py $clients/mturk/__init__.py $
+    $clients/fms/__init__.py $clients/sdb/__init__.py $
+    $clients/cloudtrail/__init__.py $clients/health/__init__.py $
+    $clients/marketplace-entitlement/__init__.py $clients/waf/__init__.py $
+    $clients/sms/__init__.py $clients/lex-runtime/__init__.py $
+    $clients/mediastore/__init__.py $clients/xray/__init__.py $
+    $clients/codecommit/__init__.py $clients/iot-jobs-data/__init__.py $
+    $clients/alexaforbusiness/__init__.py $clients/lex-models/__init__.py $
+    $clients/autoscaling-plans/__init__.py $
+    $clients/resource-groups/__init__.py $clients/datapipeline/__init__.py $
+    $clients/opsworks/__init__.py $clients/apigateway/__init__.py $
+    $clients/route53domains/__init__.py $clients/translate/__init__.py $
+    $clients/elbv2/__init__.py $clients/stepfunctions/__init__.py $
+    $clients/greengrass/__init__.py $clients/iot/__init__.py $
+    $clients/cloudhsm/__init__.py $clients/rekognition/__init__.py $
+    $clients/application-autoscaling/__init__.py $build-client-pyi
 # Regenerate build files if build script changes.
 rule configure
   command = $configure $configure_args
