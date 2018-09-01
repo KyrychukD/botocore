@@ -5,7 +5,6 @@
 import argparse
 import json
 import os
-import re
 import sys
 
 from botocore.client import ServiceModel

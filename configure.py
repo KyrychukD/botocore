@@ -100,17 +100,6 @@ def generate_build(root, build_file):
     )
     n.newline()
 
-    n.variable(
-        'build-service-version-init-module',
-        os.path.join('$root', 'scripts', 'build-service-version-init-module'),
-    )
-    build_service_version_init_module = 'build-service-version-init-module'
-    n.rule(
-        build_service_version_init_module,
-        command='$build-service-version-init-module $in $out'
-    )
-    n.newline()
-
     all_targets = []
 
     n.comment('Services')
